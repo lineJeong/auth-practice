@@ -4,7 +4,7 @@ const port = 5000;
 const bodyParser = require("body-parser");
 const { User } = require("./models/User");
 
-require("dotenv").config();
+const config = require("./config/key");
 
 // application/x-ww-form-urlencoded 데이터 분석
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 const mongoose = require("mongoose");
 mongoose
-  .connect(process.env.DB)
+  .connect(config.mongoURI)
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
 
